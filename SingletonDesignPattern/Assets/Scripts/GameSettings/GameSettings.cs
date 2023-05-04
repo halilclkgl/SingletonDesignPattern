@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class GameSettings : MonoBehaviour
 {
+    // Tek bir örnek oluþturmak için static bir deðiþken kullanýlýr
     private static GameSettings instance = null;
 
     private int difficulty;
@@ -16,27 +17,33 @@ public class GameSettings : MonoBehaviour
         this.soundEnabled = true;
     }
 
-    public static GameSettings Instance
+    public static GameSettings GetInstance()
     {
-        get
+        // Eðer instance henüz oluþturulmamýþsa yeni bir örnek oluþturulur
+        if (instance == null)
         {
-            if (instance == null)
-            {
-                instance = new GameSettings();
-            }
-            return instance;
+            instance = new GameSettings();
         }
+        return instance;
     }
 
-    public int Difficulty
+    public int GetDifficulty()
     {
-        get { return difficulty; }
-        set { difficulty = value; }
+        return difficulty;
     }
 
-    public bool SoundEnabled
+    public void SetDifficulty(int difficulty)
     {
-        get { return soundEnabled; }
-        set { soundEnabled = value; }
+        this.difficulty = difficulty;
+    }
+
+    public bool IsSoundEnabled()
+    {
+        return soundEnabled;
+    }
+
+    public void SetSoundEnabled(bool soundEnabled)
+    {
+        this.soundEnabled = soundEnabled;
     }
 }
